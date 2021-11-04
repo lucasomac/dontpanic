@@ -1,4 +1,6 @@
+import 'package:dontpanic/res/custom_colors.dart';
 import 'package:dontpanic/utils/authentication.dart';
+import 'package:dontpanic/widgets/google_sign_in_button.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -32,20 +34,20 @@ class _SignInScreenState extends State<SignInScreen> {
                     Flexible(
                       flex: 1,
                       child: Image.asset(
-                        'assets/firebase_logo.png',
+                        'assets/images/logo_dont_panic.png',
                         height: 160,
                       ),
                     ),
                     SizedBox(height: 20),
                     Text(
-                      'FlutterFire',
+                      'Don\'t',
                       style: TextStyle(
                         color: CustomColors.firebaseYellow,
                         fontSize: 40,
                       ),
                     ),
                     Text(
-                      'Authentication',
+                      'Panic',
                       style: TextStyle(
                         color: CustomColors.firebaseOrange,
                         fontSize: 40,
