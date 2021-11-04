@@ -40,7 +40,7 @@ flutter:
     - assets/images/
 
 flutter_icons:
-  image_path: "assets/images/logoDontPanic.png"
+  image_path: "assets/images/logo_dont_panic.png"
   android: true
   ios: true
 
