@@ -14,7 +14,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.firebaseNavy,
+      backgroundColor: CustomColors.whiteBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -38,15 +38,15 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 160,
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Don\'t',
                       style: TextStyle(
                         color: CustomColors.firebaseYellow,
                         fontSize: 40,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Panic',
                       style: TextStyle(
                         color: CustomColors.firebaseOrange,
@@ -60,11 +60,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 future: Authentication.initializeFirebase(context: context),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Text('Error initializing Firebase');
+                    return const Text('Error initializing Firebase');
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     return GoogleSignInButton();
                   }
-                  return CircularProgressIndicator(
+                  return const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
                       CustomColors.firebaseOrange,
                     ),
