@@ -1,9 +1,9 @@
 import 'package:dontpanic/screens/user_info_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class Authentication {
   static SnackBar customSnackBar({required String content}) {
@@ -49,7 +49,9 @@ class Authentication {
 
         user = userCredential.user;
       } catch (e) {
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
       }
     } else {
       final GoogleSignIn googleSignIn = GoogleSignIn();

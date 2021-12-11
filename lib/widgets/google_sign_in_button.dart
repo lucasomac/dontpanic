@@ -1,9 +1,11 @@
-import 'package:dontpanic/screens/user_info_screen.dart';
+import 'package:dontpanic/screens/base.dart';
 import 'package:dontpanic/utils/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class GoogleSignInButton extends StatefulWidget {
+  const GoogleSignInButton({Key? key}) : super(key: key);
+
   @override
   _GoogleSignInButtonState createState() => _GoogleSignInButtonState();
 }
@@ -43,7 +45,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => UserInfoScreen(
+                      builder: (context) => Base(
                         user: user,
                       ),
                     ),

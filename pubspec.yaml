@@ -28,6 +28,9 @@ dependencies:
   firebase_core:
   firebase_auth:
   google_sign_in:
+  google_maps_flutter:
+  geolocator:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:

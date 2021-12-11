@@ -1,8 +1,9 @@
-import '../res/custom_colors.dart';
-import 'sign_in_screen.dart';
-import '../utils/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../res/custom_colors.dart';
+import '../utils/authentication.dart';
+import 'sign_in_screen.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User user})
@@ -120,7 +121,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               ),
               const SizedBox(height: 24.0),
               Text(
-                'You are now signed in using your Google account.',
+                'Não se cale, peça ajuda!',
                 style: TextStyle(
                     color: CustomColors.firebaseNavy.withOpacity(0.8),
                     fontSize: 14,
