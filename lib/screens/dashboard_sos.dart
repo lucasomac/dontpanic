@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:permission_handler/permission_handler.dart' as ph;
 
 class DashBoardSos extends StatefulWidget {
   const DashBoardSos({Key? key}) : super(key: key);
@@ -17,66 +16,83 @@ class _DashBoardSosState extends State<DashBoardSos> {
 
   late StreamSubscription<Position> positionStream;
   String status = 'Aguardando GPS';
-  late Position positionLocation;
-
-  @override
-  void initState() {
-    listenPosition();
-    super.initState();
-  }
+  Position? positionLocation;
 
   final Completer<GoogleMapController> _controller = Completer();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding:
-            const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 256),
-        child: GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition: const CameraPosition(
-            target: LatLng(25, 23),
-          ),
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-        ),
-      ),
+    return FutureBuilder(
+      future: _determinePosition(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+            break;
+          case ConnectionState.waiting:
+            // TODO: Handle this case.
+            break;
+          case ConnectionState.active:
+            // TODO: Handle this case.
+            break;
+          case ConnectionState.done:
+            return Padding(
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, top: 16, bottom: 256),
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(positionLocation?.latitude ?? 35,
+                        positionLocation?.longitude ?? 34),
+                    zoom: 18),
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              ),
+            );
+        }
+        return Text('data');
+      },
     );
   }
 
-  listenPosition() async {
-    ph.PermissionStatus permission = await ph.Permission.location.request();
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
 
-    if (permission.isDenied) {
-      _showMessage(
-          'Parece que você não permitiu o uso do GPS, abra as configurações do aplicativo e libere a permissão');
-    } else {
-      bool gpsIsEnabled = await Geolocator.isLocationServiceEnabled();
-
-      if (!gpsIsEnabled) {
-        _showMessage(
-            'Seu GPS está desligado, para obter a localicação ative-o.');
-      }
-      setState(() {
-        status = 'Obtendo a localização';
-      });
-
-      positionStream =
-          Geolocator.getPositionStream().listen((Position position) async {
-        // garante que o trecho abaixo seja executado somente uma vez
-        if (positionLocation == null) {
-          setState(() {
-            positionLocation = position;
-          });
-          setState(() {
-            positionLocation = position;
-            status = 'Localização obtida';
-          });
-        }
-      });
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
     }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    setState(() {
+      positionLocation = Geolocator.getCurrentPosition() as Position?;
+    });
+    return await Geolocator.getCurrentPosition();
   }
 
   _showMessage(String message) => scaffoldKey.currentState?.showSnackBar(

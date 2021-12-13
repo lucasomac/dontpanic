@@ -1,12 +1,13 @@
-import 'package:dontpanic/screens/dashboard_sos.dart';
+import 'package:dontpanic/screens/home.dart';
 import 'package:dontpanic/screens/secure_list.dart';
 import 'package:dontpanic/screens/user_info_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+final appKey = GlobalKey();
+
 class Base extends StatefulWidget {
   // final User user;
-
   const Base({Key? key, required User user})
       : _user = user,
         super(key: key);
@@ -21,7 +22,7 @@ class _BaseState extends State<Base> {
   int _selectedIndex = 1;
   static final List<Widget> _widgetOptions = <Widget>[
     const SecureList(),
-    const DashBoardSos(),
+    Home(),
     loggedUser.photoURL != null
         ? UserInfoScreen(user: loggedUser)
         : const Text('Nao Logado')
@@ -42,6 +43,7 @@ class _BaseState extends State<Base> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: appKey,
       appBar: AppBar(
         title: const Text('DontPanic'),
         centerTitle: true,
