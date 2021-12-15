@@ -45,16 +45,24 @@ class _BaseState extends State<Base> {
     return Scaffold(
       key: appKey,
       appBar: AppBar(
-        title: const Text('DontPanic'),
+        backgroundColor: Colors.white70,
+        title: const Text(
+          'DontPanic',
+          style: TextStyle(color: Colors.black54),
+        ),
         centerTitle: true,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.black38,
+        selectedItemColor: Colors.black87,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.view_agenda),
+            icon: Icon(
+              Icons.view_agenda,
+            ),
             label: 'Agenda',
           ),
           BottomNavigationBarItem(

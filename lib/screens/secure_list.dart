@@ -27,19 +27,30 @@ class SecureList extends StatelessWidget {
     ];
     return ListView.builder(
       itemCount: list.length,
-      itemBuilder: (context, index) => ListTile(
-        title: Text(list[index].nome),
-        subtitle: Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-          child: Text(
-            list[index].telefone,
-            style: const TextStyle(
-              color: Colors.green,
-              backgroundColor: Colors.greenAccent,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black,
+              ),
+              borderRadius: BorderRadius.circular(8)),
+          child: ListTile(
+            title: Text(
+              list[index].nome,
+              style: TextStyle(fontSize: 18),
             ),
+            subtitle: Text(
+              list[index].telefone,
+              style: const TextStyle(
+                fontSize: 24,
+                color: Colors.green,
+                backgroundColor: Colors.greenAccent,
+              ),
+            ),
+            trailing: const TrailingContact(),
           ),
         ),
-        trailing: const TrailingContact(),
       ),
     );
   }

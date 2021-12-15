@@ -13,15 +13,34 @@ class Home extends StatelessWidget with ChangeNotifier {
       child: Builder(
         builder: (context) {
           final local = context.watch<SosController>();
-          return GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: LatLng(local.lat, local.long),
-              zoom: 18,
-            ),
-            mapType: MapType.normal,
-            myLocationEnabled: true,
-            onMapCreated: local.onMapCreated,
-            markers: local.markers,
+          return Column(
+            children: [
+              Flexible(
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(local.lat, local.long),
+                    zoom: 18,
+                  ),
+                  mapType: MapType.normal,
+                  myLocationEnabled: true,
+                  onMapCreated: local.onMapCreated,
+                  markers: local.markers,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.greenAccent)),
+                  onPressed: () {},
+                  child: Text(
+                    'ENVIAR SOS',
+                    style: TextStyle(fontSize: 48, color: Colors.black54),
+                  ),
+                ),
+              )
+            ],
           );
         },
       ),

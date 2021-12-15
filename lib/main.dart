@@ -16,9 +16,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FlutterFire Samples',
       debugShowCheckedModeBanner: false,
+      darkTheme: Theme.of(context),
       theme: ThemeData(
+        primaryColor: Colors.white,
+        backgroundColor: Colors.white,
         primarySwatch: Colors.indigo,
-        brightness: Brightness.dark,
       ),
       home: const SignInScreen(),
     );

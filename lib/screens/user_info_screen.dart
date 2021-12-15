@@ -43,7 +43,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   void initState() {
     _user = widget._user;
-
     super.initState();
   }
 
@@ -51,11 +50,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.whiteBackground,
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backgroundColor: CustomColors.whiteBackground,
-      //   title: AppBarTitle(),
-      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -67,15 +61,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
-                  Text(
-                    'Profile',
-                    style: TextStyle(
-                      color: CustomColors.firebaseNavy,
-                      fontSize: 26,
-                    ),
-                  ),
                   SizedBox(height: 8.0),
                 ],
               ),
@@ -106,26 +93,57 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               Text(
                 _user.displayName!,
                 style: const TextStyle(
-                  color: CustomColors.firebaseYellow,
+                  color: CustomColors.firebaseNavy,
                   fontSize: 26,
                 ),
               ),
-              const SizedBox(height: 8.0),
-              Text(
-                '( ${_user.email!} )',
-                style: const TextStyle(
-                  color: CustomColors.firebaseOrange,
-                  fontSize: 20,
-                  letterSpacing: 0.5,
-                ),
-              ),
+              // const SizedBox(height: 8.0),
+              // Text(
+              //   '( ${_user.email!} )',
+              //   style: const TextStyle(
+              //     color: CustomColors.firebaseOrange,
+              //     fontSize: 20,
+              //     letterSpacing: 0.5,
+              //   ),
+              // ),
               const SizedBox(height: 24.0),
-              Text(
-                'Não se cale, peça ajuda!',
-                style: TextStyle(
-                    color: CustomColors.firebaseNavy.withOpacity(0.8),
-                    fontSize: 14,
-                    letterSpacing: 0.2),
+
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Esta é sua mensagem de SOS.',
+                      style: TextStyle(
+                          color: CustomColors.firebaseNavy.withOpacity(0.8),
+                          fontSize: 14,
+                          letterSpacing: 0.2),
+                    ),
+                    Text(
+                      'Suas localização atual será anexada a ela no pedido de socorro.',
+                      style: TextStyle(
+                          color: CustomColors.firebaseNavy.withOpacity(0.8),
+                          fontSize: 14,
+                          letterSpacing: 0.2),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Card(
+                          color: Colors.greenAccent,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Estou em perigo. Por favor me encontre nestas coordenadas.',
+                            ),
+                          ),
+                        ),
+                        InkWell(child: Icon(Icons.edit))
+                      ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 16.0),
               _isSigningOut
@@ -135,7 +153,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   : ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
-                          Colors.redAccent,
+                          Colors.greenAccent,
                         ),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
@@ -157,11 +175,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       child: const Padding(
                         padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
                         child: Text(
-                          'Sign Out',
+                          'Sair',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.green,
                             letterSpacing: 2,
                           ),
                         ),

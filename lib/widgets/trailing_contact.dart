@@ -10,7 +10,7 @@ class TrailingContact extends StatelessWidget {
       height: 28,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.white12,
+          color: Colors.black,
           width: 2,
         ),
         borderRadius: BorderRadius.circular(8),
@@ -20,7 +20,7 @@ class TrailingContact extends StatelessWidget {
         height: 24,
         child: Icon(
           Icons.delete,
-          color: Colors.white12,
+          color: Colors.grey,
         ),
       ),
     );
