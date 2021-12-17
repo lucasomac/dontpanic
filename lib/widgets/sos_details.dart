@@ -10,12 +10,12 @@ class SosDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.network(
-          sos.imageCaptured ?? '',
-          height: 250,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover,
-        ),
+        // Image.network(
+        //   sos.imageCaptured ?? '',
+        //   height: 250,
+        //   width: MediaQuery.of(context).size.width,
+        //   fit: BoxFit.cover,
+        // ),
         Padding(
           padding: EdgeInsets.only(top: 24, left: 24),
           child: Text(
@@ -26,7 +26,7 @@ class SosDetails extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 24, left: 24),
           child: Text(
-            '${sos.latitude} - ${sos.longitude}',
+            '${sos.location.latitude} - ${sos.location.longitude}',
           ),
         ),
       ],

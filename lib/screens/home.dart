@@ -1,4 +1,4 @@
-import 'package:dontpanic/controller/sos_controller.dart';
+import 'package:dontpanic/controller/map_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -8,11 +8,11 @@ class Home extends StatelessWidget with ChangeNotifier {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<SosController>(
-      create: (context) => SosController(),
+    return ChangeNotifierProvider<MapController>(
+      create: (context) => MapController(),
       child: Builder(
         builder: (context) {
-          final local = context.watch<SosController>();
+          final local = context.watch<MapController>();
           return Column(
             children: [
               Flexible(

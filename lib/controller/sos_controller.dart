@@ -1,73 +1,49 @@
-import 'package:dontpanic/repositories/sos_repositories.dart';
-import 'package:dontpanic/screens/base.dart';
-import 'package:dontpanic/widgets/sos_details.dart';
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dontpanic/data/database.dart';
+import 'package:dontpanic/models/sos.dart';
 
-class SosController extends ChangeNotifier {
-  double lat = 0;
-  double long = 0;
-  String error = '';
-  Set<Marker> markers = {};
-  late GoogleMapController _googleMapController;
+CollectionReference sosCalls =
+    Database.dontPanicDb.doc("lukarado.olv@gamil.com").collection("soscalls");
 
-  get googleMapController => _googleMapController;
+class ContactsController {
+  String? userEmail;
 
-  onMapCreated(GoogleMapController gmc) async {
-    _googleMapController = gmc;
-    getPosition();
-    loadSos();
+  static Future<void> addSosCall({required Sos sos}) async {
+    DocumentReference documentReferencer = sosCalls.doc();
+    await documentReferencer
+        .set(sos.toString())
+        .whenComplete(() => print("Note item added to the database"))
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 
-  getPosition() async {
-    try {
-      Position position = await _actualPosition();
-      lat = position.latitude;
-      long = position.longitude;
-      _googleMapController
-          .animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)));
-    } catch (error) {
-      this.error = error.toString();
-    }
-    notifyListeners();
-  }
-
-  Future<Position> _actualPosition() async {
-    LocationPermission permission;
-    bool enable = await Geolocator.isLocationServiceEnabled();
-    if (!enable) {
-      return Future.error('Por favor, habilite a localizacao do smartphone');
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Você precisa autorizar o acesso a localização');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error('Você precisa autorizar o acesso a localização');
-    }
-    return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-  }
-
-  void loadSos() {
-    final sos = SosRepository().soss;
-    sos.forEach((sos) async {
-      markers.add(Marker(
-          markerId: MarkerId(sos.message),
-          position: LatLng(sos.latitude, sos.longitude),
-          // icon: await BitmapDescriptor.fromAssetImage(
-          //     ImageConfiguration(size: Size(5, 5)),
-          //     'assets/images/logo_dont_panic.png'),
-          onTap: () {
-            showModalBottomSheet(
-                context: appKey.currentState!.context,
-                builder: (context) => SosDetails(sos: sos));
-          }));
-    });
-    notifyListeners();
-  }
+  // static Future<void> updateItem(
+  //     {required SecureContact secureContact, required String docId}) async {
+  //   DocumentReference documentReferencer = sosCalls.doc(docId);
+  //
+  //   Map<String, dynamic> data = <String, dynamic>{
+  //     "name": secureContact.name,
+  //     "phone": secureContact.phone,
+  //   };
+  //
+  //   await documentReferencer
+  //       .update(data)
+  //       .whenComplete(() => print("Note item updated in the database"))
+  //       .catchError((e) => print(e));
+  // }
+  //
+  // static Stream<QuerySnapshot> readSecureContacts() {
+  //   return sosCalls.snapshots();
+  // }
+  //
+  // static Future<void> deleteSecureContact({
+  //   required String docId,
+  // }) async {
+  //   DocumentReference documentReferencer = sosCalls.doc(docId);
+  //
+  //   await documentReferencer
+  //       .delete()
+  //       .whenComplete(() => print('Note item deleted from the database'))
+  //       .catchError((e) => print(e));
+  // }
 }

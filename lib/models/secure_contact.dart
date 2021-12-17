@@ -1,18 +1,18 @@
 class SecureContact {
-  late final String nome;
-  late final String telefone;
+  late final String name;
+  late final String phone;
 
-  SecureContact(this.nome, this.telefone);
+  SecureContact(this.name, this.phone);
 
   SecureContact.fromJson(Map<String, dynamic> json) {
-    nome = json['nome'];
-    telefone = json['telefone'];
+    name = json['name'];
+    phone = json['phone'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['nome'] = nome;
-    data['telefone'] = telefone;
+    data['name'] = name;
+    data['phone'] = phone;
     return data;
   }
 }
