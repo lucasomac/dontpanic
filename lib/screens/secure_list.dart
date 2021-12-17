@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dontpanic/controller/contacts_controller.dart';
 import 'package:dontpanic/models/secure_contact.dart';
 import 'package:dontpanic/res/custom_colors.dart';
+import 'package:dontpanic/widgets/secure_contact_form.dart';
 import 'package:dontpanic/widgets/trailing_contact.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +83,7 @@ class SecureList extends StatelessWidget {
               return const Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    CustomColors.firebaseOrange,
+                    Palette.firebaseOrange,
                   ),
                 ),
               );
@@ -93,7 +94,12 @@ class SecureList extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: FloatingActionButton(
             backgroundColor: Colors.greenAccent,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecureContactForm()),
+              );
+            },
             child: const Icon(
               Icons.add,
               color: Colors.green,

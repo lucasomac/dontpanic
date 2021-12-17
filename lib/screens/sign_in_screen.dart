@@ -14,7 +14,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.whiteBackground,
+      backgroundColor: Palette.whiteBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -42,14 +42,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     const Text(
                       'Don\'t',
                       style: TextStyle(
-                        color: CustomColors.firebaseYellow,
+                        color: Palette.firebaseYellow,
                         fontSize: 40,
                       ),
                     ),
                     const Text(
                       'Panic',
                       style: TextStyle(
-                        color: CustomColors.firebaseOrange,
+                        color: Palette.firebaseOrange,
                         fontSize: 40,
                       ),
                     ),
@@ -66,7 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   }
                   return const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomColors.firebaseOrange,
+                      Palette.firebaseOrange,
                     ),
                   );
                 },

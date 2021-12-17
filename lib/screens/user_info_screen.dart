@@ -1,3 +1,4 @@
+import 'package:dontpanic/res/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.whiteBackground,
+      backgroundColor: Palette.whiteBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -69,7 +70,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               _user.photoURL != null
                   ? ClipOval(
                       child: Material(
-                        color: CustomColors.firebaseGrey.withOpacity(0.3),
+                        color: Palette.firebaseGrey.withOpacity(0.3),
                         child: Image.network(
                           _user.photoURL!,
                           fit: BoxFit.fitHeight,
@@ -78,13 +79,13 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     )
                   : ClipOval(
                       child: Material(
-                        color: CustomColors.firebaseGrey.withOpacity(0.3),
+                        color: Palette.firebaseGrey.withOpacity(0.3),
                         child: const Padding(
                           padding: EdgeInsets.all(16.0),
                           child: Icon(
                             Icons.person,
                             size: 60,
-                            color: CustomColors.firebaseGrey,
+                            color: Palette.firebaseGrey,
                           ),
                         ),
                       ),
@@ -93,7 +94,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               Text(
                 _user.displayName!,
                 style: const TextStyle(
-                  color: CustomColors.firebaseNavy,
+                  color: Palette.firebaseNavy,
                   fontSize: 26,
                 ),
               ),
@@ -115,14 +116,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     Text(
                       'Esta é sua mensagem de SOS.',
                       style: TextStyle(
-                          color: CustomColors.firebaseNavy.withOpacity(0.8),
+                          color: Palette.firebaseNavy.withOpacity(0.8),
                           fontSize: 14,
                           letterSpacing: 0.2),
                     ),
                     Text(
                       'Suas localização atual será anexada a ela no pedido de socorro.',
                       style: TextStyle(
-                          color: CustomColors.firebaseNavy.withOpacity(0.8),
+                          color: Palette.firebaseNavy.withOpacity(0.8),
                           fontSize: 14,
                           letterSpacing: 0.2),
                     ),
@@ -130,12 +131,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                        Card(
-                          color: Colors.greenAccent,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Estou em perigo. Por favor me encontre nestas coordenadas.',
+                        Expanded(
+                          child: Card(
+                            color: Colors.greenAccent,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                Strings.patternMessage,
+                              ),
                             ),
                           ),
                         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomColors {
+class Palette {
   static const Color firebaseNavy = Color(0xFF2C384A);
   static const Color firebaseOrange = Color(0xFFF57C00);
   static const Color firebaseAmber = Color(0xFFFFA000);
