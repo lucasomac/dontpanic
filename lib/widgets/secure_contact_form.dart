@@ -3,7 +3,9 @@ import 'package:dontpanic/models/secure_contact.dart';
 import 'package:flutter/material.dart';
 
 class SecureContactForm extends StatefulWidget {
-  const SecureContactForm({Key? key}) : super(key: key);
+  String userEmail;
+
+  SecureContactForm(this.userEmail, {Key? key}) : super(key: key);
 
   @override
   State<SecureContactForm> createState() => _SecureContactFormState();
@@ -11,7 +13,6 @@ class SecureContactForm extends StatefulWidget {
 
 class _SecureContactFormState extends State<SecureContactForm> {
   final _form = GlobalKey<FormState>();
-
   final Map<String, String> _formData = {};
 
   // void _loadFormData(User user) {
@@ -36,7 +37,7 @@ class _SecureContactFormState extends State<SecureContactForm> {
                 if (_form.currentState!.validate()) {
                   _form.currentState!.save();
 
-                  ContactsController.addSecureContact(
+                  ContactsController(widget.userEmail).addSecureContact(
                       secureContact: SecureContact(
                           _formData['name']!, _formData['phone']!));
                   Navigator.of(context).pop();

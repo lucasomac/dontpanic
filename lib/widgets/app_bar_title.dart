@@ -1,4 +1,4 @@
-import 'package:dontpanic/res/custom_colors.dart';
+import 'package:dontpanic/res/pallete.dart';
 import 'package:flutter/material.dart';
 
 class AppBarTitle extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:dontpanic/res/custom_colors.dart';
+import 'package:dontpanic/res/pallete.dart';
 import 'package:dontpanic/utils/authentication.dart';
 import 'package:dontpanic/widgets/google_sign_in_button.dart';
 import 'package:flutter/material.dart';

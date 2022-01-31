@@ -2,7 +2,7 @@ import 'package:dontpanic/res/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../res/custom_colors.dart';
+import '../res/pallete.dart';
 import '../utils/authentication.dart';
 import 'sign_in_screen.dart';
 
@@ -121,7 +121,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           letterSpacing: 0.2),
                     ),
                     Text(
-                      'Suas localização atual será anexada a ela no pedido de socorro.',
+                      'A localização atual será anexada no pedido de socorro.',
                       style: TextStyle(
                           color: Palette.firebaseNavy.withOpacity(0.8),
                           fontSize: 14,

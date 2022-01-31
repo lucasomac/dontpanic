@@ -35,6 +35,10 @@ dependencies:
   provider:
   flutter_config:
   flutterfire_cli:
+  flutter_sms:
+  telephony:
+  sprintf:
+  fluttertoast:
 
 dev_dependencies:
   flutter_test:

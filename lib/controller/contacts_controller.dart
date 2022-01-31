@@ -1,16 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dontpanic/data/database.dart';
 import 'package:dontpanic/models/secure_contact.dart';
-
-CollectionReference secureContacts = Database.dontPanicDb
-    .doc("lukarado.olv@gamil.com")
-    .collection("securecontacts");
+import 'package:dontpanic/res/strings.dart';
 
 class ContactsController {
-  String? userEmail;
+  String userEmail;
+  late CollectionReference secureContacts;
 
-  static Future<void> addSecureContact(
-      {required SecureContact secureContact}) async {
+  ContactsController(this.userEmail) {
+    secureContacts = Database.dontPanicDb
+        .doc(userEmail)
+        .collection(Strings.secureContactCollection);
+  }
+
+  Future<void> addSecureContact({required SecureContact secureContact}) async {
     DocumentReference documentReferencer = secureContacts.doc();
     await documentReferencer
         .set({'name': secureContact.name, 'phone': secureContact.phone})
@@ -19,7 +22,7 @@ class ContactsController {
         .catchError((error) => print("Failed to add user: $error"));
   }
 
-  static Future<void> updateItem(
+  Future<void> updateItem(
       {required SecureContact secureContact, required String docId}) async {
     DocumentReference documentReferencer = secureContacts.doc(docId);
 
@@ -34,11 +37,11 @@ class ContactsController {
         .catchError((e) => print(e));
   }
 
-  static Stream<QuerySnapshot> readSecureContacts() {
+  Stream<QuerySnapshot> readSecureContacts() {
     return secureContacts.snapshots();
   }
 
-  static Future<void> deleteSecureContact({
+  Future<void> deleteSecureContact({
     required String docId,
   }) async {
     DocumentReference documentReferencer = secureContacts.doc(docId);

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 final appKey = GlobalKey();
 
 class Base extends StatefulWidget {
-  // final User user;
   const Base({Key? key, required User user})
       : _user = user,
         super(key: key);
@@ -21,8 +20,8 @@ class _BaseState extends State<Base> {
   static late User loggedUser;
   int _selectedIndex = 1;
   static final List<Widget> _widgetOptions = <Widget>[
-    const SecureList(),
-    Home(),
+    SecureList(loggedUser.email!),
+    Home(loggedUser),
     loggedUser.photoURL != null
         ? UserInfoScreen(user: loggedUser)
         : const Text('Nao Logado')
