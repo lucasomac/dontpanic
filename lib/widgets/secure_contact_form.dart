@@ -57,7 +57,17 @@ class _SecureContactFormState extends State<SecureContactForm> {
             children: [
               TextFormField(
                 initialValue: _formData['name'],
-                decoration: const InputDecoration(label: Text('Nome')),
+                decoration: const InputDecoration(
+                  label: Text('Nome'),
+                  labelStyle: TextStyle(color: Colors.green),
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.greenAccent,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.greenAccent),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Não pode ser vazio ou nulo';
@@ -71,7 +81,15 @@ class _SecureContactFormState extends State<SecureContactForm> {
               ),
               TextFormField(
                 initialValue: _formData['phone'],
-                decoration: const InputDecoration(label: Text('Telefone')),
+                decoration: const InputDecoration(
+                    label: Text('Telefone'),
+                    labelStyle: TextStyle(color: Colors.green),
+                    icon: Icon(
+                      Icons.phone,
+                      color: Colors.greenAccent,
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.greenAccent))),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {

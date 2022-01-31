@@ -26,10 +26,19 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       darkTheme: Theme.of(context),
       theme: ThemeData(
-        primaryColor: Colors.white,
-        backgroundColor: Colors.white,
-        primarySwatch: Colors.indigo,
-      ),
+          primaryColor: Colors.white,
+          backgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo)
+              .copyWith(secondary: Colors.greenAccent),
+          inputDecorationTheme: InputDecorationTheme(
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.greenAccent)))
+          // inputDecorationTheme: const InputDecorationTheme(
+          //   focusedBorder: UnderlineInputBorder(
+          //     borderSide: BorderSide(color: Colors.greenAccent),
+          //   ),
+          // ),
+          ),
       home: const SignInScreen(),
     );
   }

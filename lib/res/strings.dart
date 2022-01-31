@@ -5,4 +5,7 @@ class Strings {
   static const secureContactCollection = 'securecontacts';
   static const sosCollection = 'soscalls';
   static const appName = 'DontPanic';
+  static const menuAgenda = 'Agenda';
+  static const menuHome = 'Home';
+  static const menuProfile = 'Perfil';
 }

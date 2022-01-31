@@ -1,3 +1,4 @@
+import 'package:dontpanic/res/strings.dart';
 import 'package:dontpanic/screens/home.dart';
 import 'package:dontpanic/screens/secure_list.dart';
 import 'package:dontpanic/screens/user_info_screen.dart';
@@ -46,7 +47,7 @@ class _BaseState extends State<Base> {
       appBar: AppBar(
         backgroundColor: Colors.white70,
         title: const Text(
-          'DontPanic',
+          Strings.appName,
           style: TextStyle(color: Colors.black54),
         ),
         centerTitle: true,
@@ -62,15 +63,15 @@ class _BaseState extends State<Base> {
             icon: Icon(
               Icons.view_agenda,
             ),
-            label: 'Agenda',
+            label: Strings.menuAgenda,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: Strings.menuHome,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Perfil',
+            label: Strings.menuProfile,
           ),
         ],
         currentIndex: _selectedIndex,

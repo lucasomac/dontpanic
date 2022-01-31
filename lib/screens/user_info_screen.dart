@@ -98,17 +98,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   fontSize: 26,
                 ),
               ),
-              // const SizedBox(height: 8.0),
-              // Text(
-              //   '( ${_user.email!} )',
-              //   style: const TextStyle(
-              //     color: CustomColors.firebaseOrange,
-              //     fontSize: 20,
-              //     letterSpacing: 0.5,
-              //   ),
-              // ),
               const SizedBox(height: 24.0),
-
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
