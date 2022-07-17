@@ -1,5 +1,6 @@
-import 'package:dontpanic/res/pallete.dart';
 import 'package:flutter/material.dart';
+
+import '../../res/palette.dart';
 
 class AppBarTitle extends StatelessWidget {
   const AppBarTitle({Key? key}) : super(key: key);

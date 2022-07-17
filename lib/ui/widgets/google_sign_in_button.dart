@@ -1,7 +1,8 @@
-import 'package:dontpanic/screens/base.dart';
-import 'package:dontpanic/utils/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/authentication.dart';
+import '../screens/base.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   const GoogleSignInButton({Key? key}) : super(key: key);

@@ -1,11 +1,13 @@
-import 'package:dontpanic/controller/contacts_controller.dart';
-import 'package:dontpanic/models/secure_contact.dart';
 import 'package:flutter/material.dart';
+import 'package:kiwi/kiwi.dart';
+
+import '../../data/models/secure_contact.dart';
+import '../../data/repository/secure_contact_repository.dart';
 
 class SecureContactForm extends StatefulWidget {
-  String userEmail;
+  final String userEmail;
 
-  SecureContactForm(this.userEmail, {Key? key}) : super(key: key);
+  const SecureContactForm(this.userEmail, {Key? key}) : super(key: key);
 
   @override
   State<SecureContactForm> createState() => _SecureContactFormState();
@@ -14,6 +16,7 @@ class SecureContactForm extends StatefulWidget {
 class _SecureContactFormState extends State<SecureContactForm> {
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
+  final SecureContactRepository repository = KiwiContainer().resolve();
 
   // void _loadFormData(User user) {
   //   _formData['id'] = user.id!;
@@ -36,10 +39,8 @@ class _SecureContactFormState extends State<SecureContactForm> {
               onPressed: () {
                 if (_form.currentState!.validate()) {
                   _form.currentState!.save();
-
-                  ContactsController(widget.userEmail).addSecureContact(
-                      secureContact: SecureContact(
-                          _formData['name']!, _formData['phone']!));
+                  repository.addSecureContact(widget.userEmail,
+                      SecureContact(_formData['name']!, _formData['phone']!));
                   Navigator.of(context).pop();
                 }
               },

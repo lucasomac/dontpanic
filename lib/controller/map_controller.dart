@@ -1,23 +1,30 @@
-import 'package:dontpanic/repositories/sos_repositories.dart';
-import 'package:dontpanic/screens/base.dart';
-import 'package:dontpanic/widgets/sos_details.dart';
+import 'package:dontpanic/data/repository/sos_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kiwi/kiwi.dart';
+import '../data/models/sos.dart';
+import '../ui/screens/base.dart';
+import '../ui/widgets/sos_details.dart';
 
-class MapController extends ChangeNotifier {
+class MapRepository extends ChangeNotifier {
+  final SosRepository repository = KiwiContainer().resolve();
   double lat = 0;
   double long = 0;
   String error = '';
   Set<Marker> markers = {};
   late GoogleMapController _googleMapController;
 
+  final String useremail;
+
+  MapRepository(this.useremail);
+
   get googleMapController => _googleMapController;
 
   onMapCreated(GoogleMapController gmc) async {
     _googleMapController = gmc;
     getPosition();
-    loadSos();
+    loadSos(useremail);
   }
 
   getPosition() async {
@@ -53,9 +60,9 @@ class MapController extends ChangeNotifier {
         desiredAccuracy: LocationAccuracy.high);
   }
 
-  void loadSos() {
-    final sos = SosRepository().soss;
-    sos.forEach((sos) async {
+  void loadSos(String userEmail) {
+    final List<Sos> soss = repository.getAllSos(userEmail) as List<Sos>;
+    for (var sos in soss) {
       markers.add(Marker(
           markerId: MarkerId(sos.message),
           position: LatLng(sos.location.latitude, sos.location.longitude),
@@ -67,7 +74,7 @@ class MapController extends ChangeNotifier {
                 context: appKey.currentState!.context,
                 builder: (context) => SosDetails(sos: sos));
           }));
-    });
+    }
     notifyListeners();
   }
 }

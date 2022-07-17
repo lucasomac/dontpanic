@@ -1,9 +1,9 @@
-import 'package:dontpanic/res/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../res/pallete.dart';
-import '../utils/authentication.dart';
+import '../../res/palette.dart';
+import '../../res/strings.dart';
+import '../../utils/authentication.dart';
 import 'sign_in_screen.dart';
 
 class UserInfoScreen extends StatefulWidget {

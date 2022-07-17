@@ -50,7 +50,7 @@ class _DashBoardSosState extends State<DashBoardSos> {
               ),
             );
         }
-        return Text('data');
+        return const Text('data');
       },
     );
   }
@@ -94,12 +94,4 @@ class _DashBoardSosState extends State<DashBoardSos> {
     });
     return await Geolocator.getCurrentPosition();
   }
-
-  _showMessage(String message) => scaffoldKey.currentState?.showSnackBar(
-        SnackBar(
-          content: Text(message),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
 }

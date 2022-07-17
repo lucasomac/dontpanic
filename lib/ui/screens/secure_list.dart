@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dontpanic/controller/contacts_controller.dart';
-import 'package:dontpanic/models/secure_contact.dart';
-import 'package:dontpanic/res/pallete.dart';
-import 'package:dontpanic/widgets/secure_contact_form.dart';
-import 'package:dontpanic/widgets/trailing_contact.dart';
+import 'package:dontpanic/res/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:kiwi/kiwi.dart';
+
+import '../../data/models/secure_contact.dart';
+import '../../data/repository/secure_contact_repository.dart';
+import '../widgets/secure_contact_form.dart';
+import '../widgets/trailing_contact.dart';
 
 class SecureList extends StatelessWidget {
-  String userEmail;
+  final String userEmail;
+
+  final SecureContactRepository repository = KiwiContainer().resolve();
 
   SecureList(this.userEmail, {Key? key}) : super(key: key);
 
@@ -18,7 +22,7 @@ class SecureList extends StatelessWidget {
       children: [
         Flexible(
           child: StreamBuilder<QuerySnapshot>(
-            stream: ContactsController(userEmail).readSecureContacts(),
+            stream: repository.getAllSecureContact(userEmail),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return const Text('Something went wrong');
@@ -70,8 +74,8 @@ class SecureList extends StatelessWidget {
                             ),
                             trailing: InkWell(
                                 onTap: () {
-                                  ContactsController(userEmail)
-                                      .deleteSecureContact(docId: docID);
+                                  repository.deleteSecureContact(
+                                      userEmail, docID);
                                 },
                                 child: const TrailingContact()),
                           ),

@@ -1,9 +1,10 @@
-import 'package:dontpanic/res/strings.dart';
-import 'package:dontpanic/screens/home.dart';
-import 'package:dontpanic/screens/secure_list.dart';
-import 'package:dontpanic/screens/user_info_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../res/strings.dart';
+import 'home.dart';
+import 'secure_list.dart';
+import 'user_info_screen.dart';
 
 final appKey = GlobalKey();
 

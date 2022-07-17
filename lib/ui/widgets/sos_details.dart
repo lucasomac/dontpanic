@@ -1,5 +1,6 @@
-import 'package:dontpanic/models/sos.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/models/sos.dart';
 
 class SosDetails extends StatelessWidget {
   final Sos sos;
@@ -17,14 +18,14 @@ class SosDetails extends StatelessWidget {
         //   fit: BoxFit.cover,
         // ),
         Padding(
-          padding: EdgeInsets.only(top: 24, left: 24),
+          padding: const EdgeInsets.only(top: 24, left: 24),
           child: Text(
             sos.message,
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
+            style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 24, left: 24),
+          padding: const EdgeInsets.only(top: 24, left: 24),
           child: Text(
             '${sos.location.latitude} - ${sos.location.longitude}',
           ),

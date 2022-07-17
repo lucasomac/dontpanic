@@ -1,10 +1,11 @@
-import 'package:dontpanic/res/strings.dart';
-import 'package:dontpanic/screens/sign_in_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 
+import 'di/dont_panic_module.dart';
 import 'firebase_options.dart';
+import 'res/strings.dart';
+import 'ui/screens/sign_in_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await FlutterConfig.loadEnvVariables();
+  DontPanicModule.inject();
   runApp(const MyApp());
 }
 
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo)
               .copyWith(secondary: Colors.greenAccent),
-          inputDecorationTheme: InputDecorationTheme(
+          inputDecorationTheme: const InputDecorationTheme(
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.greenAccent)))
           // inputDecorationTheme: const InputDecorationTheme(

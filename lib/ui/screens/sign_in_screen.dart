@@ -1,7 +1,8 @@
-import 'package:dontpanic/res/pallete.dart';
-import 'package:dontpanic/utils/authentication.dart';
-import 'package:dontpanic/widgets/google_sign_in_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../res/palette.dart';
+import '../../utils/authentication.dart';
+import '../widgets/google_sign_in_button.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -39,20 +40,20 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      'Don\'t',
-                      style: TextStyle(
-                        color: Palette.firebaseYellow,
-                        fontSize: 40,
-                      ),
-                    ),
-                    const Text(
-                      'Panic',
-                      style: TextStyle(
-                        color: Palette.firebaseOrange,
-                        fontSize: 40,
-                      ),
-                    ),
+                    // const Text(
+                    //   'Don\'t',
+                    //   style: TextStyle(
+                    //     color: Palette.firebaseYellow,
+                    //     fontSize: 40,
+                    //   ),
+                    // ),
+                    // const Text(
+                    //   'Panic',
+                    //   style: TextStyle(
+                    //     color: Palette.firebaseOrange,
+                    //     fontSize: 40,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

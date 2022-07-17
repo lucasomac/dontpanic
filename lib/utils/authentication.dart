@@ -1,9 +1,10 @@
-import 'package:dontpanic/screens/base.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../ui/screens/base.dart';
 
 class Authentication {
   static SnackBar customSnackBar({required String content}) {
